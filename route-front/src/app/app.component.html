@@ -1,0 +1,35 @@
+<!-- 
+<div style="text-align: center">
+  <h1>
+    Bem Vindo {{ title }}!
+  </h1>
+
+  <button (click)="get()">Buscar</button>
+
+  <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" >
+
+    <ng-container *ngFor="let marker of markers">
+      <agm-marker [latitude]="marker?.xPoint" [longitude]="marker?.yPoint" (mouseOver)="onMouseOver(infoWindow, $event)"
+      (mouseOut)="onMouseOut(infoWindow, $event)">
+        <agm-info-window [disableAutoPan]="false" #infoWindow>
+        <map-info [marker]="marker"></map-info> 
+        </agm-info-window>
+      </agm-marker>
+    </ng-container>
+  
+  </agm-map>
+</div> -->
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination" (onResponse)="onResponse($event)">
+    <ng-container *ngFor="let point of points">
+      <agm-marker [latitude]="point?.latitude" [longitude]="point?.longitude">
+        <agm-info-window [disableAutoPan]="false" #infoWindow>
+          {{ point.pracaPedagio }}
+        </agm-info-window>
+      </agm-marker>
+    </ng-container>
+  </agm-direction>
+</agm-map>
+ 
+<button type="button" (click)="getDirection()">Get</button>
