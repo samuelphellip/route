@@ -1,0 +1,92 @@
+swagger: '2.0'
+info:
+  description: 'Descrição API Rota'
+  version: '1.0.0'
+  title: 'API Rota'
+  contact:
+    email: 'samuel.costa@infosistemas.com.br'
+host: 'localhost:8041'
+basePath: '/api/v1'
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Routes
+
+paths:
+  /routes/tolls:
+    x-swagger-router-controller: route.controller
+    post:
+      tags:
+        - Routes
+      summary: "Recupera pedagios na rota enviada"
+      description: "Recupera pedagios na rota enviada"
+      operationId: "tolls"
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: "#/definitions/tollsRequest"
+      responses:
+        200:
+          description: "created"
+          schema:
+            $ref: "#/definitions/tollsResponse"
+        403:
+          description: "Acesso Negado"
+          schema:
+            $ref: "#/definitions/errorResponse"
+
+definitions:
+  tollsRequest:
+    type: "object"
+    properties:
+      polyline:
+        type: "string"
+  tollsResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/tollResponse'
+  tollResponse:
+    type: object
+    properties:
+      id:
+        type: number
+      pracaPedagio:
+        type: string
+      concessionaria:
+        type: string
+      ano:
+        type: number
+      uf:
+        type: string
+      rodovia:
+        type: number
+      km:
+        type: string
+      sentido:
+        type: string
+      direcao:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      cabine:
+        type: string
+      telefone:
+        type: string
+      dataInicioCobranca:
+        type: string
+  errorResponse:
+    type: object
+    properties:
+      message:
+        type: string

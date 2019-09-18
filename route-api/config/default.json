@@ -1,0 +1,7 @@
+{
+    "ENV": "development",
+    "SERVER": {
+        "PORT": 8041
+    },
+    "HOST": "localhost"
+}

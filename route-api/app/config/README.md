@@ -1,0 +1,1 @@
+# Diretório que contém as configurações de documento, token, referente a api.
