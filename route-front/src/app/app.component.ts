@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef  } from '@angular/core';
 import { AppService } from './app.service';
 
 @Component({
@@ -7,13 +7,13 @@ import { AppService } from './app.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'route';
+  @ViewChild('origem', {static: false}) origem: ElementRef;
+  @ViewChild('destino', {static: false}) destino: ElementRef;
 
   constructor(private service: AppService) {}
 
   lat: Number = -19.9023386;
   lng: Number = -44.1041385;
-
   zoom: Number = 14;
 
   dir = undefined;
@@ -22,8 +22,8 @@ export class AppComponent {
 
   public getDirection() {
     this.dir = {
-      origin: 'R. Geraldo Martins Duarte - Diamante, Belo Horizonte - MG, 30660-306',
-      destination: 'Rio de Janeiro, RJ'
+      origin: this.origem.nativeElement.value,
+      destination: this.destino.nativeElement.value
     }
   }
 
